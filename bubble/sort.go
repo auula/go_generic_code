@@ -5,6 +5,10 @@ import (
 )
 
 func bubbleSort(sequence []int64) {
+
+}
+
+func bubbleSortByGeneric[T int64 | float64](sequence []T) {
 	for i := 0; i < len(sequence)-1; i++ {
 		for j := 0; j < len(sequence)-1-i; j++ {
 			if sequence[j] > sequence[j+1] {
@@ -64,14 +68,14 @@ func Print[T any](s []T) {
 }
 
 func add[T int64 | float64 | ~int8](a, b T) T {
-return a + b
+	return a + b
 }
+
 type MyInt int8
 
 type Number interface {
 	int64 | float64
 }
-
 
 func SumNumbers[K comparable, V Number](m map[K]V) V {
 	var s V
@@ -89,21 +93,10 @@ func whoisMin[T Number](a, b T) T {
 }
 
 func main() {
-	// Initialize a map for the integer values
-	ints := map[string]int64{
-		"first":  34,
-		"second": 12,
-	}
-
-	// Initialize a map for the float values
-	floats := map[int8]float64{
-		-128: 35.98,
-		127:  26.99,
-	}
-
-	fmt.Printf("Generic Sums with Constraint: %v and %v\n",
-		SumNumbers(ints),
-		SumNumbers(floats))
-
-	fmt.Println(whoisMin[int64](100, 1000))
+	var sequence1 = []int64{100, 23, 14, 66, 78, 12, 8}
+	bubbleSortByGeneric(sequence1)
+	fmt.Println(sequence1)
+	var sequence2 = []float64{120.13, 2.3, 112.3, 66.5, 78.12, 1.2, 8}
+	bubbleSortByGeneric(sequence2)
+	fmt.Println(sequence2)
 }
