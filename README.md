@@ -1,1 +1,2 @@
-# go_generic_code
+# Generic programming in Go.
+
